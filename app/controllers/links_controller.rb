@@ -12,7 +12,7 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(
       user_id: params['user_id'],
-      slug: params['slug'],
+      slug: params['slug'].standardize_target_url!,
       target_url: params['target_url']
     )
     if @link.save
