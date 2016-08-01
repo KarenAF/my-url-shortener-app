@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-  
+
   def forward
     @link = Link.find_by(whatever: params[:whatever])
     if @link
@@ -13,6 +13,11 @@ class LinksController < ApplicationController
     @links = Link.all
   end
 
+  def show
+    @link = Link.find_by(id: params['id'])
+    render 'show.html.erb'
+  end
+
   def new
     @link = Link.new
     render 'new.html.erb'
@@ -21,7 +26,7 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(
       user_id: params['user_id'],
-      slug: params['slug'].standardize_target_url!,
+      slug: params['slug'],
       target_url: params['target_url']
     )
     if @link.save
@@ -41,12 +46,12 @@ class LinksController < ApplicationController
     @link = Link.find_by(id: params['id'])
     @link.update(
       user_id: params['user_id'],
-      slug: params['slug'].standardize_target_url!,
+      slug: params['slug'],
       target_url: params['target_url']
     )
     if @link.save
       flash[:success] = "Link successfully updated"
-      redirect_to '/links/#{@link.id}'
+      redirect_to "/links/#{@link.id}"
     else
       render 'edit.html.erb'
     end

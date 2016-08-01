@@ -15,8 +15,11 @@ Rails.application.routes.draw do
    get '/links/new' => 'links#new'
    post '/links' => 'links#create'
    get '/links/:id' => 'links#show'
+   get '/links/:id/edit' => 'links#edit'
+   patch '/links/:id' => 'links#update'
+   
    get '/links/:id' => 'visits#create'
-
+   
  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

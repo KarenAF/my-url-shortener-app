@@ -2,16 +2,20 @@
 
 <table>
   <tr>
-    <th>Slug</th>
-    <th>Target URL</th>
+    <th>Slug  </th>
+    <th>Edit  </th>
+    <th>Target URL </th>
     <th>Created At</th>
   </tr>
   <% @links.each do |link| %>
     <tr>
-      <td><%= link.slug %></td>
+<td><a href="/links/<%=link.id%>"><%= link.slug %></a></td> 
+      <td><a href="/links/<%=link.id%>/edit"> Edit link </a></td>
       <td><%= link.target_url %></td>
       <td><%= link.created_at %></td>
     </tr>
+
+
   <% end %>
 <table>
 
