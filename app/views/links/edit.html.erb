@@ -1,0 +1,30 @@
+<h1>Edit link:</h1>
+
+<h5> 
+<% if @link.errors.any? %>
+  <div id= "error_explanation">
+    <%= pluralize(@link.errors.count, "errors") %> prohibited this link from being saved:
+    <ul>
+    <% @link.errors.full_messages.each do |msg| %>
+      <li> <%= msg %> </li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+</h5>  
+<h4>
+<%= form_tag '/links', method: :patch do %>
+<div class = "form-group">
+  <%= label_tag :slug %>
+  <%= text_field_tag :slug, @link.slug, class: "form-control" %>
+</div>
+<div class = "form-group">
+  <%= label_tag :target_url %>
+  <%= text_field_tag :target_url, @link.target_url, class: "form-control" %>
+</div>  
+<div class = "form-group">
+  <%= submit_tag "Add link" %>
+</div>
+<a href="/links"> cancel </a>
+<% end %>
+</h4>

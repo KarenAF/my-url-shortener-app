@@ -10,4 +10,8 @@ class Link < ActiveRecord::Base
     target_url.gsub!("http://", "")
     target_url.gsub!("https://", "")
   end
+
+  def visit_count
+    visits.count
+  end
 end

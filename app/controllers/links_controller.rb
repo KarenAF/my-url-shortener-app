@@ -22,4 +22,24 @@ class LinksController < ApplicationController
       render 'new.html.erb'
     end
   end
+
+  def edit
+    @link = Link.find_by(id: params['id'])
+    render 'edit.html.erb'
+  end
+
+  def update
+    @link = Link.find_by(id: params['id'])
+    @link.update(
+      user_id: params['user_id'],
+      slug: params['slug'].standardize_target_url!,
+      target_url: params['target_url']
+    )
+    if @link.save
+      flash[:success] = "Link successfully updated"
+      redirect_to '/links/#{@link.id}'
+    else
+      render 'edit.html.erb'
+    end
+  end
 end

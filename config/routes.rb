@@ -14,7 +14,7 @@ Rails.application.routes.draw do
    get '/links' => 'links#index'
    get '/links/new' => 'links#new'
    post '/links' => 'links#create'
-
+   get '/links/:id' => 'links#show'
    get '/links/:id' => 'visits#create'
 
  end
