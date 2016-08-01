@@ -56,4 +56,11 @@ class LinksController < ApplicationController
       render 'edit.html.erb'
     end
   end
+
+  def destroy
+    @link = Link.find_by(id: params['id'])
+    @link.destroy
+    flash[:success] = "Link successfully deleted"
+    redirect_to '/links'
+  end
 end
