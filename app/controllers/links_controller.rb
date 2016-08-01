@@ -1,4 +1,13 @@
 class LinksController < ApplicationController
+  
+  def forward
+    @link = Link.find_by(whatever: params[:whatever])
+    if @link
+      redirict_to @link.slug
+    else
+      raise ActionController::RoutingError.new("Not Found")
+    end
+  end
 
   def index
     @links = Link.all
